@@ -12,14 +12,14 @@ from lr_utils import load_dataset
 train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
 
 
-print  "--------Example of a picture--------"
+print  ("--------Example of a picture--------")
 index = 25
 # plt.imshow(train_set_x_orig[index])
 # plt.show()
 print ("y = "+str(train_set_y[:, index])+", it's a '"+classes[np.squeeze(train_set_y[:, index])].\
     decode("utf-8") +  "' picture.")
 
-print  "--------shape info--------"
+print  ("--------shape info--------")
 ### START CODE HERE ### (≈ 3 lines of code)
 m_train = train_set_x_orig.shape[0]
 m_test  = test_set_x_orig.shape[0]
@@ -66,7 +66,7 @@ def sigmoid(z):
     #
     return s
 
-print "--------sigmoid--------"
+print ("--------sigmoid--------")
 print ("sigmoid([0, 2]) = " + str(sigmoid(np.array([0,2]))))
 
 
@@ -93,7 +93,7 @@ def initialize_with_zeros(dim):
     
     return w, b
 
-print "--------initialize_with_zeros--------"
+print ("--------initialize_with_zeros--------")
 dim = 2
 w, b = initialize_with_zeros(dim)
 print ("w = " + str(w))
@@ -142,7 +142,7 @@ def propagate(w, b, X, Y):
     
     return grads, cost
 
-print "--------propagate--------"
+print ("--------propagate--------")
 w, b, X, Y = np.array([[1],[2]]), 2, np.array([[1,2],[3,4]]), np.array([[1,0]])
 grads, cost = propagate(w, b, X, Y)
 print ("dw = " + str(grads["dw"]))
@@ -208,7 +208,7 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost = False):
     
     return params, grads, costs
 
-print "--------optimize--------"
+print ("--------optimize--------")
 params, grads, costs = optimize(w, b, X, Y, num_iterations= 100, learning_rate = 0.009, print_cost = False)
 
 print ("w = " + str(params["w"]))
@@ -255,7 +255,7 @@ def predict(w, b, X):
     
     return Y_prediction
 
-print "--------predictions--------"
+print ("--------predictions--------")
 print ("predictions = " + str(predict(w, b, X)))
 
 
@@ -310,7 +310,7 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
     return d
 
 def testModel():
-    print "-------testMode--------"
+    print ("-------testMode--------")
     d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 2000, learning_rate = 0.005, print_cost = True)
 
 
@@ -333,7 +333,7 @@ def testModel():
     plt.show()
 
 def testLearningRate():
-    print "-------testLearningRate--------"
+    print ("-------testLearningRate--------")
     learning_rates = [0.01, 0.001, 0.0001]
     models = {}
     for i in learning_rates:
