@@ -114,7 +114,7 @@ def cost(logits, labels):
     ### START CODE HERE ### 
     
     # Create the placeholders for "logits" (z) and "labels" (y) (approx. 2 lines)
-    z = tf.placeholder(tf.int64, name = 'z')
+    z = tf.placeholder(tf.float32, name = 'z')
     y = tf.placeholder(tf.int64, name = 'y')
     
     # Use the loss function (approx. 1 line)
@@ -436,8 +436,8 @@ def test_sigmoid():
 
 def test_cost():
     logits = sigmoid(np.array([0.2,0.4,0.7,0.9]))
-    cost = cost(logits, np.array([0,0,1,1]))
-    print ("cost = " + str(cost))
+    costResult = cost(logits, np.array([0,0,1,1]))
+    print ("costResult = " + str(costResult))
 
 def test_one_hot_matrix():
     labels = np.array([1,2,3,0,2,1])
