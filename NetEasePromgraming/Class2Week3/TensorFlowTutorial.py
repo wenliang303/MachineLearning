@@ -358,12 +358,12 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate = 0.0001,
     
     # Cost function: Add cost function to tensorflow graph
     ### START CODE HERE ### (1 line)
-    cost = compute_cost(z3, Y)
+    cost = compute_cost(Z3, Y)
     ### END CODE HERE ###
     
     # Backpropagation: Define the tensorflow optimizer. Use an AdamOptimizer.
     ### START CODE HERE ### (1 line)
-    optimizer = tf.train.AdamOptimizer(learning_rate = learning_rate).minimize(cost)
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate = learning_rate).minimize(cost)
     ### END CODE HERE ###
     
     # Initialize all the variables
