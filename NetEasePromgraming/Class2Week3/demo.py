@@ -26,6 +26,7 @@ def test_multiply():
     b = tf.constant(30)
     c = tf.multiply(a, b)
 
+    init = tf.global_variables_initializer()
     with tf.Session() as session:
         session.run(init)
         print(session.run(c))
@@ -34,6 +35,8 @@ def test_feed():
     sess = tf.Session()
     xx = tf.placeholder(tf.int32, name='any_name')
     res = sess.run(xx * 2, feed_dict={xx:30})
+    print (res)
+    a = tf.constant(3)
     print(a.__dict__.items())
     sess.close()
 
