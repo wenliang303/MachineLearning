@@ -343,27 +343,27 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate = 0.0001,
     
     # Create Placeholders of shape (n_x, n_y)
     ### START CODE HERE ### (1 line)
-    X, Y = None
+    X, Y = create_placeholders(n_x, n_y)
     ### END CODE HERE ###
 
     # Initialize parameters
     ### START CODE HERE ### (1 line)
-    parameters = None
+    parameters = initialize_parameters()
     ### END CODE HERE ###
     
     # Forward propagation: Build the forward propagation in the tensorflow graph
     ### START CODE HERE ### (1 line)
-    Z3 = None
+    Z3 = forward_propagation(X, parameters)
     ### END CODE HERE ###
     
     # Cost function: Add cost function to tensorflow graph
     ### START CODE HERE ### (1 line)
-    cost = None
+    cost = compute_cost(z3, Y)
     ### END CODE HERE ###
     
     # Backpropagation: Define the tensorflow optimizer. Use an AdamOptimizer.
     ### START CODE HERE ### (1 line)
-    optimizer = None
+    optimizer = tf.train.AdamOptimizer(learning_rate = learning_rate).minimize(cost)
     ### END CODE HERE ###
     
     # Initialize all the variables
@@ -391,7 +391,7 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate = 0.0001,
                 # IMPORTANT: The line that runs the graph on a minibatch.
                 # Run the session to execute the "optimizer" and the "cost", the feedict should contain a minibatch for (X,Y).
                 ### START CODE HERE ### (1 line)
-                _ , minibatch_cost = None
+                _ , minibatch_cost = sess.run([optimizer, cost], feed_dict={X: minibatch_X, Y: minibatch_Y})
                 ### END CODE HERE ###
                 
                 epoch_cost += minibatch_cost / num_minibatches
