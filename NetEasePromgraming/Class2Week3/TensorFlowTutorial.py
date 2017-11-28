@@ -511,4 +511,14 @@ def test_model():
     X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
     parameters = model(X_train, Y_train, X_test, Y_test)
 
-    
+test_linear_function()
+test_sigmoid()
+test_cost()
+test_one_hot_matrix()
+test_ones()
+test_data()
+test_create_placeholders()
+test_initialize_parameters()
+test_forward_propagation()
+test_compute_cost()
+test_model()
