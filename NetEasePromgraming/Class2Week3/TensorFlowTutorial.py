@@ -51,7 +51,7 @@ def linear_function():
     X =  tf.constant(np.random.randn(3,1), name = "X")
     W =  tf.constant(np.random.randn(4,3), name = "W")
     b =  tf.constant(np.random.randn(4,1), name = "b")
-    Y =  tf.add(tf.matmul(W.T,X),b)
+    Y =  tf.add(tf.matmul(W,X),b)
     ### END CODE HERE ### 
     
     # Create the session using tf.Session() and run it with sess.run(...) on the variable you want to calculate
@@ -80,7 +80,7 @@ def sigmoid(z):
     
     ### START CODE HERE ### ( approx. 4 lines of code)
     # Create a placeholder for x. Name it 'x'.
-    x = tf.placeholder(tf.int64, name = 'x')
+    x = tf.placeholder(tf.float32, name = 'x')
 
     # compute sigmoid(x)
     sigmoid = tf.sigmoid(x)
@@ -115,7 +115,7 @@ def cost(logits, labels):
     
     # Create the placeholders for "logits" (z) and "labels" (y) (approx. 2 lines)
     z = tf.placeholder(tf.float32, name = 'z')
-    y = tf.placeholder(tf.int64, name = 'y')
+    y = tf.placeholder(tf.float32, name = 'y')
     
     # Use the loss function (approx. 1 line)
     cost = tf.nn.sigmoid_cross_entropy_with_logits(logits = z,  labels = y)
