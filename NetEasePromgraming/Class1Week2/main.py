@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import h5py
 import scipy
-#from PIL import Image
+from PIL import Image
 from scipy import ndimage
 from lr_utils import load_dataset
 
@@ -316,21 +316,21 @@ def testModel():
 
     # Example of a picture that was wrongly classified.
     index = 1
-    # plt.figure()
-    # plt.imshow(test_set_x[:,index].reshape((num_px, num_px, 3)))
-    # plt.show()
+    plt.figure()
+    plt.imshow(test_set_x[:,index].reshape((num_px, num_px, 3)))
+    plt.show()
 
     print ("y = " + str(test_set_y[0,index]) + ", you predicted that it is a \"" + classes[d["Y_prediction_test"][0,index]].decode("utf-8") +  "\" picture.")
 
     # Plot learning curve (with costs)
-    # plt.figure()
-    # costs = np.squeeze(d['costs'])
-    # learning_rate_point=np.arange(0,2000,100)
-    # plt.plot(learning_rate_point,costs)
-    # plt.ylabel('cost')
-    # plt.xlabel('iterations (per hundreds)')
-    # plt.title("Learning rate =" + str(d["learning_rate"]))
-    # plt.show()
+    plt.figure()
+    costs = np.squeeze(d['costs'])
+    learning_rate_point=np.arange(0,2000,100)
+    plt.plot(learning_rate_point,costs)
+    plt.ylabel('cost')
+    plt.xlabel('iterations (per hundreds)')
+    plt.title("Learning rate =" + str(d["learning_rate"]))
+    plt.show()
 
 def testLearningRate():
     print ("-------testLearningRate--------")
@@ -341,17 +341,17 @@ def testLearningRate():
         models[str(i)] = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 1500, learning_rate = i, print_cost = False)
         print ('\n' + "-------------------------------------------------------" + '\n')
     
-    # plt.figure()
-    # for i in learning_rates:
-    #     plt.plot(np.squeeze(models[str(i)]["costs"]), label= str(models[str(i)]["learning_rate"]))
+    plt.figure()
+    for i in learning_rates:
+        plt.plot(np.squeeze(models[str(i)]["costs"]), label= str(models[str(i)]["learning_rate"]))
 
-    # plt.ylabel('cost')
-    # plt.xlabel('iterations')
+    plt.ylabel('cost')
+    plt.xlabel('iterations')
 
-    # legend = plt.legend(loc='upper center', shadow=True)
-    # frame = legend.get_frame()
-    # frame.set_facecolor('0.90')
-    # plt.show()
+    legend = plt.legend(loc='upper center', shadow=True)
+    frame = legend.get_frame()
+    frame.set_facecolor('0.90')
+    plt.show()
 
 def testImg():
 
@@ -366,12 +366,12 @@ def testImg():
     my_image = scipy.misc.imresize(image, size=(num_px,num_px)).reshape((1, num_px*num_px*3)).T
     my_predicted_image = predict(d["w"], d["b"], my_image)
     
-    # plt.figure()
-    # plt.imshow(image)
-    # plt.show()
+    plt.figure()
+    plt.imshow(image)
+    plt.show()
     print("y = " + str(np.squeeze(my_predicted_image)) + ", your algorithm predicts a \"" + classes[int(np.squeeze(my_predicted_image)),].decode("utf-8") +  "\" picture.")
 
-testModel()
-testLearningRate()
+#testModel()
+#testLearningRate()
 
 testImg()
