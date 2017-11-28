@@ -157,7 +157,7 @@ def one_hot_matrix(labels, C):
     one_hot_matrix = tf.one_hot(labels,C,axis=0)
     
     # Create the session (approx. 1 line)
-    sess = tf.session()
+    sess = tf.Session()
     
     # Run the session (approx. 1 line)
     one_hot = sess.run(one_hot_matrix)
@@ -187,13 +187,13 @@ def ones(shape):
     ones = tf.ones(shape)
     
     # Create the session (approx. 1 line)
-    sess = tf.session()
+    sess = tf.Session()
     
     # Run the session to compute 'ones' (approx. 1 line)
     ones = sess.run(ones)
     
     # Close the session (approx. 1 line). See method 1 above.
-    ones.close()
+    sess.close()
     
     ### END CODE HERE ###
     return ones
@@ -283,11 +283,11 @@ def forward_propagation(X, parameters):
     b3 = parameters['b3']
     
     ### START CODE HERE ### (approx. 5 lines)              # Numpy Equivalents:
-    Z1 = np.dot(W1, X) + b1                                    # Z1 = np.dot(W1, X) + b1
-    A1 = relu(Z1)                                              # A1 = relu(Z1)
-    Z2 = np.dot(W2, a1) + b2                                   # Z2 = np.dot(W2, a1) + b2
-    A2 = relu(Z2)                                              # A2 = relu(Z2)
-    Z3 = np.dot(W3,Z2) + b3                                    # Z3 = np.dot(W3,Z2) + b3
+    Z1 = tf.add(tf.matmul(W1, X), b1)                         # Z1 = np.dot(W1, X) + b1
+    A1 = tf.nn.relu(Z1)                                       # A1 = relu(Z1)
+    Z2 = tf.add(tf.matmul(W2, A1), b2)                        # Z2 = np.dot(W2, a1) + b2
+    A2 = tf.nn.relu(Z2)                                       # A2 = relu(Z2)
+    Z3 = tf.add(tf.matmul(W3,Z2), b3)                         # Z3 = np.dot(W3,Z2) + b3
     ### END CODE HERE ###
     
     return Z3
@@ -309,7 +309,7 @@ def compute_cost(Z3, Y):
     logits = tf.transpose(Z3)
     labels = tf.transpose(Y)
     
-    ### START CODE HERE ### (1 line of code)
+    ### TART CODE HERE ### (1 line of code)
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = logits, labels = labels))
     ### END CODE HERE ###
     
@@ -403,12 +403,12 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate = 0.0001,
                 costs.append(epoch_cost)
                 
         # plot the cost
-        plt.figure()
-        plt.plot(np.squeeze(costs))
-        plt.ylabel('cost')
-        plt.xlabel('iterations (per tens)')
-        plt.title("Learning rate =" + str(learning_rate))
-        plt.show()
+        #plt.figure()
+        #plt.plot(np.squeeze(costs))
+        #plt.ylabel('cost')
+        #plt.xlabel('iterations (per tens)')
+        #plt.title("Learning rate =" + str(learning_rate))
+        #plt.show()
 
         # lets save the parameters in a variable
         parameters = sess.run(parameters)
@@ -453,7 +453,7 @@ def test_data():
 
     # Example of a picture
     index = 0
-    plt.imshow(X_train_orig[index])
+    #plt.imshow(X_train_orig[index])
     print ("y = " + str(np.squeeze(Y_train_orig[:, index])))
     # Flatten the training and test images
     X_train_flatten = X_train_orig.reshape(X_train_orig.shape[0], -1).T
@@ -508,6 +508,7 @@ def test_compute_cost():
 
 def test_model():
     # Loading the dataset
+
     X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
     parameters = model(X_train, Y_train, X_test, Y_test)
 
