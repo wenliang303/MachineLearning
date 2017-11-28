@@ -371,7 +371,7 @@ def testImg():
     # plt.show()
     print("y = " + str(np.squeeze(my_predicted_image)) + ", your algorithm predicts a \"" + classes[int(np.squeeze(my_predicted_image)),].decode("utf-8") +  "\" picture.")
 
-#testModel()
-#testLearningRate()
+testModel()
+testLearningRate()
 
 testImg()
