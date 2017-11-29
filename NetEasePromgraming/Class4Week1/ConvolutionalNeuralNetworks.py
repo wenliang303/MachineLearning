@@ -214,11 +214,11 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate = 0.009,
         
         
         # plot the cost
-        plt.plot(np.squeeze(costs))
-        plt.ylabel('cost')
-        plt.xlabel('iterations (per tens)')
-        plt.title("Learning rate =" + str(learning_rate))
-        plt.show()
+        # plt.plot(np.squeeze(costs))
+        # plt.ylabel('cost')
+        # plt.xlabel('iterations (per tens)')
+        # plt.title("Learning rate =" + str(learning_rate))
+        # plt.show()
 
         # Calculate the correct predictions
         predict_op = tf.argmax(Z3, 1)
@@ -240,8 +240,9 @@ def test_data():
     # Loading the data (signs)
     X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
     # Example of a picture
-    index = 6
-    plt.imshow(X_train_orig[index])
+    # index = 6
+    # plt.imshow(X_train_orig[index])
+
     print ("y = " + str(np.squeeze(Y_train_orig[:, index])))
     X_train = X_train_orig/255.
     X_test = X_test_orig/255.
@@ -260,7 +261,7 @@ def test_create_placeholders():
     print ("X = " + str(X))
     print ("Y = " + str(Y))
 
-def test_():
+def test_initialize_parameters():
     tf.reset_default_graph()
     with tf.Session() as sess_test:
         parameters = initialize_parameters()
@@ -282,7 +283,6 @@ def test_forward_propagation():
         a = sess.run(Z3, {X: np.random.randn(2,64,64,3), Y: np.random.randn(2,6)})
         print("Z3 = " + str(a))
 
-
 def test_compute_cost():
     tf.reset_default_graph()
 
@@ -298,4 +298,19 @@ def test_compute_cost():
         print("cost = " + str(a))
 
 def test_model():
+    # Loading the data (signs)
+    X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
+
+    X_train = X_train_orig/255.
+    X_test = X_test_orig/255.
+    Y_train = convert_to_one_hot(Y_train_orig, 6).T
+    Y_test = convert_to_one_hot(Y_test_orig, 6).T
     _, _, parameters = model(X_train, Y_train, X_test, Y_test)
+
+
+test_data()
+test_create_placeholders()
+test_initialize_parameters()
+test_forward_propagation()
+test_compute_cost()
+test_model()
