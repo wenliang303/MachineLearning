@@ -92,7 +92,6 @@ def HappyModel(input_shape):
     return model
 
 # GRADED FUNCTION: HappyModel
-
 def HappyModel(input_shape):
     """
     Implementation of the HappyModel.
@@ -165,6 +164,16 @@ def test_HappyModel():
     happyModel.compile(optimizer=keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0), loss='binary_crossentropy', metrics=['accuracy'])
     ### END CODE HERE ###
     
+    X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
+
+    # Normalize image vectors
+    X_train = X_train_orig/255.
+    X_test = X_test_orig/255.
+
+    # Reshape
+    Y_train = Y_train_orig.T
+    Y_test = Y_test_orig.T
+
     ### START CODE HERE ### (1 line)
     happyModel.fit(x=X_train, y=Y_train, batch_size=16, epochs=20)
     ### END CODE HERE ###
@@ -175,3 +184,6 @@ def test_HappyModel():
     print()
     print ("Loss = " + str(preds[0]))
     print ("Test Accuracy = " + str(preds[1]))
+
+test_data()
+test_HappyModel()
