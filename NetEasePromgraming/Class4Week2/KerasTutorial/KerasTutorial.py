@@ -91,50 +91,6 @@ def HappyModel(input_shape):
     
     return model
 
-# GRADED FUNCTION: HappyModel
-def HappyModel(input_shape):
-    """
-    Implementation of the HappyModel.
-    
-    Arguments:
-    input_shape -- shape of the images of the dataset
-
-    Returns:
-    model -- a Model() instance in Keras
-    """
-    
-    ### START CODE HERE ###
-    # Feel free to use the suggested outline in the text above to get started, and run through the whole
-    # exercise (including the later portions of this notebook) once. The come back also try out other
-    # network architectures as well. 
-    X_input = Input(shape=input_shape)
-    X = ZeroPadding2D(padding=(1, 1))(X_input)
-    X = Conv2D(8, kernel_size=(3,3), strides=(1,1))(X)
-    X = BatchNormalization(axis=3)(X)
-    X = Activation('relu')(X)
-    X = MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid')(X)
-    
-    X = ZeroPadding2D(padding=(1, 1))(X)
-    X = Conv2D(16, kernel_size=(3,3), strides=(1,1))(X)
-    X = BatchNormalization(axis=3)(X)
-    X = Activation('relu')(X)
-    X = MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid')(X)
-    
-    X = ZeroPadding2D(padding=(1, 1))(X)
-    X = Conv2D(32, kernel_size=(3,3), strides=(1,1))(X)
-    X = BatchNormalization(axis=3)(X)
-    X = Activation('relu')(X)
-    X = MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid')(X)
-    
-    # FC
-    X = Flatten()(X)
-    Y = Dense(1, activation='sigmoid')(X)
-    
-    model = Model(inputs = X_input, outputs = Y, name='HappyModel')
-    ### END CODE HERE ###
-    
-    return model
-
 ##########################################
 def test_data():
     X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()

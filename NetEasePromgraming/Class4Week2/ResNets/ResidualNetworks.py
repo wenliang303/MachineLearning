@@ -268,5 +268,5 @@ def test_TrainedModel():
 
 test_identity_block()
 test_convolutional_block()
-test_ResNet50()
-test_TrainedModel()
+#test_ResNet50()
+#test_TrainedModel()
