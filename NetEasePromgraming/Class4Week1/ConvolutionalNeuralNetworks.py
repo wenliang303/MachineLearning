@@ -13,9 +13,6 @@ from cnn_utils import *
 
 np.random.seed(1)
 
-
-
-
 # GRADED FUNCTION: create_placeholders
 def create_placeholders(n_H0, n_W0, n_C0, n_y):
     """
@@ -240,7 +237,7 @@ def test_data():
     # Loading the data (signs)
     X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
     # Example of a picture
-    # index = 6
+    index = 6
     # plt.imshow(X_train_orig[index])
 
     print ("y = " + str(np.squeeze(Y_train_orig[:, index])))
