@@ -209,26 +209,24 @@ def ResNet50(input_shape = (64, 64, 3), classes = 6):
     return model
 
 ####################################
-def test_data():
-    X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
+X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
 
-    # Normalize image vectors
-    X_train = X_train_orig/255.
-    X_test = X_test_orig/255.
+# Normalize image vectors
+X_train = X_train_orig/255.
+X_test = X_test_orig/255.
 
-    # Convert training and test labels to one hot matrices
-    Y_train = convert_to_one_hot(Y_train_orig, 6).T
-    Y_test = convert_to_one_hot(Y_test_orig, 6).T
+# Convert training and test labels to one hot matrices
+Y_train = convert_to_one_hot(Y_train_orig, 6).T
+Y_test = convert_to_one_hot(Y_test_orig, 6).T
 
-    print ("number of training examples = " + str(X_train.shape[0]))
-    print ("number of test examples = " + str(X_test.shape[0]))
-    print ("X_train shape: " + str(X_train.shape))
-    print ("Y_train shape: " + str(Y_train.shape))
-    print ("X_test shape: " + str(X_test.shape))
-    print ("Y_test shape: " + str(Y_test.shape))
+print ("number of training examples = " + str(X_train.shape[0]))
+print ("number of test examples = " + str(X_test.shape[0]))
+print ("X_train shape: " + str(X_train.shape))
+print ("Y_train shape: " + str(Y_train.shape))
+print ("X_test shape: " + str(X_test.shape))
+print ("Y_test shape: " + str(Y_test.shape))
 
 def test_identity_block():
-
     tf.reset_default_graph()
     with tf.Session() as test:
         np.random.seed(1)
@@ -252,7 +250,6 @@ def test_convolutional_block():
         print("out = " + str(out[0][1][1][0]))
 
 def test_ResNet50():
-    X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
     model = ResNet50(input_shape = (64, 64, 3), classes = 6)
     
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
@@ -264,8 +261,12 @@ def test_ResNet50():
     print ("Test Accuracy = " + str(preds[1]))
 
 def test_TrainedModel():
-    X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
     model = load_model('ResNet50.h5') 
     preds = model.evaluate(X_test, Y_test)
     print ("Loss = " + str(preds[0]))
     print ("Test Accuracy = " + str(preds[1]))
+
+test_identity_block()
+test_convolutional_block()
+test_ResNet50()
+test_TrainedModel()
