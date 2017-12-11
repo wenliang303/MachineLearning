@@ -273,7 +273,7 @@ def test_yolo_eval():
         print("boxes.shape = " + str(boxes.eval().shape))
         print("classes.shape = " + str(classes.eval().shape))
 
-def test_predict()
+def test_predict():
     out_scores, out_boxes, out_classes = predict("test.jpg")
 
 
