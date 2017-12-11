@@ -177,7 +177,7 @@ def yolo_eval(yolo_outputs, image_shape = (720., 1280.), max_boxes=10, score_thr
     
     return scores, boxes, classes
 
-def predict(sess, image_file):
+def predict(image_file):
     """
     Runs the graph stored in "sess" to predict boxes for "image_file". Prints and plots the preditions.
     
@@ -257,7 +257,7 @@ def test_non_max_suppression():
         print("classes[2] = " + str(classes[2].eval()))
         print("scores.shape = " + str(scores.eval().shape))
         print("boxes.shape = " + str(boxes.eval().shape))
-    print("classes.shape = " + str(classes.eval().shape))
+        print("classes.shape = " + str(classes.eval().shape))
 
 def test_yolo_eval():
     with tf.Session() as test_b:
@@ -274,7 +274,7 @@ def test_yolo_eval():
         print("classes.shape = " + str(classes.eval().shape))
 
 def test_predict()
-    out_scores, out_boxes, out_classes = predict(sess, "test.jpg")
+    out_scores, out_boxes, out_classes = predict("test.jpg")
 
 
 test_yolo_filter_boxes()
