@@ -175,11 +175,11 @@ def test_triplet_loss():
         print("loss = " + str(loss.eval()))
 
 def test_verify():
-    FRmodel,database=getModdelAndDataBase()
+    print ("test_verify")
     verify("images/camera_0.jpg", "younes", database, FRmodel)
 
 def test_who_is_it():
-    FRmodel,database=getModdelAndDataBase()
+    print ("test_who_is_it")
     who_is_it("images/camera_0.jpg", database, FRmodel)
 
 test_triplet_loss()
