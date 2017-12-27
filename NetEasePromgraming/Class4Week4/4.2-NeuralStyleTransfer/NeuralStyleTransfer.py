@@ -155,7 +155,8 @@ def compute_style_cost(model, STYLE_LAYERS):
     
     # initialize the overall style cost
     J_style = 0
-
+    sess = tf.Session()
+    sess.run(tf.global_variables_initializer())
     for layer_name, coeff in STYLE_LAYERS:
 
         # Select the output tensor of the currently selected layer
@@ -296,6 +297,7 @@ def SolvingTheOptimizationProblem():
 
     # Start interactive session
     sess = tf.InteractiveSession()
+    sess.run(tf.global_variables_initializer())
     content_image = scipy.misc.imread("images/louvre_small.jpg")
     content_image = reshape_and_normalize_image(content_image)
     style_image = scipy.misc.imread("images/monet.jpg")
