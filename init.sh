@@ -16,3 +16,5 @@ pip install pillow
 pip install Ipython
 pip install pydot
 pip install keras
+pip install opencv-python
+apt install -y libsm6 libxext6
