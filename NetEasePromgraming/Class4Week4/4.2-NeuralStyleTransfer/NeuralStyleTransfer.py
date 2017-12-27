@@ -15,6 +15,10 @@ def _weights(layer, expected_layer_name):
     """
     Return the weights and bias from the VGG model for a given layer.
     """
+    path = "pretrained-model/imagenet-vgg-verydeep-19.mat"
+    vgg = scipy.io.loadmat(path)
+    vgg_layers= vgg['layers']
+    
     wb = vgg_layers[0][layer][0][0][2]
     W = wb[0][0]
     b = wb[0][1]
@@ -229,9 +233,7 @@ def model_nn(sess, input_image, train_step,J,J_content,J_style,num_iterations = 
 
 ################################
 def test_vgg():
-    path = "pretrained-model/imagenet-vgg-verydeep-19.mat"
-    vgg = scipy.io.loadmat(path)
-    vgg_layers= vgg['layers']
+
     graph = {}
     graph['input']   = tf.Variable(np.zeros((1, CONFIG.IMAGE_HEIGHT, CONFIG.IMAGE_WIDTH, CONFIG.COLOR_CHANNELS)), dtype = 'float32')
     graph['conv1_1']  = _conv2d_relu(graph['input'], 0, 'conv1_1') 
