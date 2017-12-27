@@ -199,13 +199,13 @@ def total_cost(J_content, J_style, alpha = 10, beta = 40):
     
     return J
 
-def model_nn(sess, input_image, train_step,J,J_content,J_style,num_iterations = 200):
+def model_nn(model,sess, input_image, train_step,J,J_content,J_style,num_iterations = 200):
     
     # Initialize global variables (you need to run the session on the initializer)
     ### START CODE HERE ### (1 line)
     sess.run(tf.global_variables_initializer())
     ### END CODE HERE ###
-    
+
     # Run the noisy input image (initial generated image) through the model. Use assign().
     ### START CODE HERE ### (1 line)
     sess.run(model['input'].assign(input_image))
@@ -340,7 +340,7 @@ def SolvingTheOptimizationProblem():
     # define train_step (1 line)
     train_step = optimizer.minimize(J)
     
-    model_nn(sess, generated_image, train_step,J,J_content,J_style, num_iterations=4)
+    model_nn(model,sess, generated_image, train_step,J,J_content,J_style, num_iterations=4)
 
 
 test_vgg()  
