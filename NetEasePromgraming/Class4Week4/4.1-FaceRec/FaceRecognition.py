@@ -24,24 +24,7 @@ np.set_printoptions(threshold=np.nan)
 #load model & set data
 FRmodel = faceRecoModel(input_shape=(3, 96, 96))
 print("Total Params:", FRmodel.count_params())
-FRmodel.compile(optimizer = 'adam', loss = triplet_loss, metrics = ['accuracy'])
-load_weights_from_FaceNet(FRmodel)
-
-database = {}
-database["danielle"] = img_to_encoding("images/danielle.png", FRmodel)
-database["younes"] = img_to_encoding("images/younes.jpg", FRmodel)
-database["tian"] = img_to_encoding("images/tian.jpg", FRmodel)
-database["andrew"] = img_to_encoding("images/andrew.jpg", FRmodel)
-database["kian"] = img_to_encoding("images/kian.jpg", FRmodel)
-database["dan"] = img_to_encoding("images/dan.jpg", FRmodel)
-database["sebastiano"] = img_to_encoding("images/sebastiano.jpg", FRmodel)
-database["bertrand"] = img_to_encoding("images/bertrand.jpg", FRmodel)
-database["kevin"] = img_to_encoding("images/kevin.jpg", FRmodel)
-database["felix"] = img_to_encoding("images/felix.jpg", FRmodel)
-database["benoit"] = img_to_encoding("images/benoit.jpg", FRmodel)
-database["arnaud"] = img_to_encoding("images/arnaud.jpg", FRmodel)
-
-    
+   
 # GRADED FUNCTION: triplet_loss
 def triplet_loss(y_true, y_pred, alpha = 0.2):
     """
@@ -79,6 +62,23 @@ def triplet_loss(y_true, y_pred, alpha = 0.2):
     ### END CODE HERE ###
     
     return loss
+    
+FRmodel.compile(optimizer = 'adam', loss = triplet_loss, metrics = ['accuracy'])
+load_weights_from_FaceNet(FRmodel)
+
+database = {}
+database["danielle"] = img_to_encoding("images/danielle.png", FRmodel)
+database["younes"] = img_to_encoding("images/younes.jpg", FRmodel)
+database["tian"] = img_to_encoding("images/tian.jpg", FRmodel)
+database["andrew"] = img_to_encoding("images/andrew.jpg", FRmodel)
+database["kian"] = img_to_encoding("images/kian.jpg", FRmodel)
+database["dan"] = img_to_encoding("images/dan.jpg", FRmodel)
+database["sebastiano"] = img_to_encoding("images/sebastiano.jpg", FRmodel)
+database["bertrand"] = img_to_encoding("images/bertrand.jpg", FRmodel)
+database["kevin"] = img_to_encoding("images/kevin.jpg", FRmodel)
+database["felix"] = img_to_encoding("images/felix.jpg", FRmodel)
+database["benoit"] = img_to_encoding("images/benoit.jpg", FRmodel)
+database["arnaud"] = img_to_encoding("images/arnaud.jpg", FRmodel)
 
 # GRADED FUNCTION: verify
 def verify(image_path, identity, database, model):
