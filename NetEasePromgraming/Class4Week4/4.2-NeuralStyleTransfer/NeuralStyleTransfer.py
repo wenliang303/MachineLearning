@@ -11,6 +11,13 @@ from nst_utils import *
 import numpy as np
 import tensorflow as tf
 
+STYLE_LAYERS = [
+    ('conv1_1', 0.2),
+    ('conv2_1', 0.2),
+    ('conv3_1', 0.2),
+    ('conv4_1', 0.2),
+    ('conv5_1', 0.2)]
+    
 def _weights(layer, expected_layer_name):
     """
     Return the weights and bias from the VGG model for a given layer.
@@ -331,7 +338,7 @@ def SolvingTheOptimizationProblem():
     # define train_step (1 line)
     train_step = optimizer.minimize(J)
     
-    model_nn(sess, generated_image, train_step,J,J_content,J_style num_iterations=4)
+    model_nn(sess, generated_image, train_step,J,J_content,J_style, num_iterations=4)
 
 
 test_vgg()  
