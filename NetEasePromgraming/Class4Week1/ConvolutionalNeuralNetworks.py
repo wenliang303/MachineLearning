@@ -49,8 +49,8 @@ def initialize_parameters():
     tf.set_random_seed(1)                              # so that your "random" numbers match ours
         
     ### START CODE HERE ### (approx. 2 lines of code)
-    W1 = tf.get_variable(name='W1', dtype=tf.float32, shape=(4, 4, 3, 8), initializer=tf.contrib.layers.xavier_initializer(seed = 0))
-    W2 = tf.get_variable(name='W2', dtype=tf.float32, shape=(2, 2, 8, 16), initializer=tf.contrib.layers.xavier_initializer(seed = 0))
+    W1 = tf.get_variable(name='W1', dtype=tf.float32, shape=(4, 4, 3, 8), initializer=tf.contrib.layers.xavier_initializer(seed = 1))
+    W2 = tf.get_variable(name='W2', dtype=tf.float32, shape=(2, 2, 8, 16), initializer=tf.contrib.layers.xavier_initializer(seed = 1))
     ### END CODE HERE ###
 
     parameters = {"W1": W1,

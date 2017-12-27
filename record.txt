@@ -1,5 +1,10 @@
 undone:
 
+4.2 ResNets
+last function values
 
 4.3 load model error
 yolo_model = load_model("model_data/yolo.h5")
+
+4.4.2
+last function values

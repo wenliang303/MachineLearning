@@ -422,7 +422,7 @@ def test_update_parameters_with_adam():
 
 def test_mini_batch_gradient_descent():
     train_X, train_Y = load_dataset()
-    print "test_gradient_descent:"
+    print ("test_gradient_descent:")
 
     # train 3-layer model
     layers_dims = [train_X.shape[0], 5, 2, 1]
@@ -441,7 +441,7 @@ def test_mini_batch_gradient_descent():
 
 def test_mini_batch_gradient_descent_momentum():
     train_X, train_Y = load_dataset()
-    print "test_mini_batch_gradient_descent_momentum:"
+    print ("test_mini_batch_gradient_descent_momentum:")
     # train 3-layer model
     layers_dims = [train_X.shape[0], 5, 2, 1]
     parameters = model(train_X, train_Y, layers_dims, beta = 0.9, optimizer = "momentum")
@@ -460,7 +460,7 @@ def test_mini_batch_gradient_descent_momentum():
 def test_mini_batch_gradient_descent_adam():
 
     train_X, train_Y = load_dataset()
-    print "test_mini_batch_gradient_descent_adam:"
+    print ("test_mini_batch_gradient_descent_adam:")
 
     # train 3-layer model
     layers_dims = [train_X.shape[0], 5, 2, 1]
