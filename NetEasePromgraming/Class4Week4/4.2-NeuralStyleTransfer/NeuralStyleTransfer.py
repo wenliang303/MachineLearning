@@ -17,7 +17,10 @@ STYLE_LAYERS = [
     ('conv3_1', 0.2),
     ('conv4_1', 0.2),
     ('conv5_1', 0.2)]
-    
+
+model = load_vgg_model("pretrained-model/imagenet-vgg-verydeep-19.mat")
+print(model)
+
 def _weights(layer, expected_layer_name):
     """
     Return the weights and bias from the VGG model for a given layer.
@@ -245,7 +248,6 @@ def test_vgg():
     graph = {}
     graph['input']   = tf.Variable(np.zeros((1, CONFIG.IMAGE_HEIGHT, CONFIG.IMAGE_WIDTH, CONFIG.COLOR_CHANNELS)), dtype = 'float32')
     graph['conv1_1']  = _conv2d_relu(graph['input'], 0, 'conv1_1') 
-    model = load_vgg_model("pretrained-model/imagenet-vgg-verydeep-19.mat")
     print(model)
 
 def test_compute_content_cost():
@@ -304,7 +306,7 @@ def SolvingTheOptimizationProblem():
     style_image = reshape_and_normalize_image(style_image)
     generated_image = generate_noise_image(content_image)
     #imshow(generated_image[0])
-    model = load_vgg_model("pretrained-model/imagenet-vgg-verydeep-19.mat")
+
     # Assign the content image to be the input of the VGG model.  
     sess.run(model['input'].assign(content_image))
 
