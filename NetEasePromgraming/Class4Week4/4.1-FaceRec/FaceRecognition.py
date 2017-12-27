@@ -15,7 +15,6 @@ import cv2
 import os
 import numpy as np
 from numpy import genfromtxt
-import pandas as pd
 import tensorflow as tf
 from fr_utils import *
 from inception_blocks_v2 import *
